@@ -37,14 +37,14 @@
 
 @property float jumpOffset;
 @property float ccJumpOffset;
+@property(nonatomic) enum EnemyState enemyState;
 
-
-@property enum EnemyState enemyState;
 // -----------------------------------------------------------------
 // methods
 
 + (instancetype)node;
 - (instancetype)init;
+- (void)launchEnemy;
 - (CGRect)getEnemyRect;
 - (void)enemyCollistionH;
 - (void)enemyCollistionV;
@@ -57,7 +57,6 @@
 - (void)forKilledByBullet;
 - (void)setNonVisibleForKilledByBullet;
 
-- (void)setEnemyState:(enum EnemyState)state;
 // -----------------------------------------------------------------
 
 @end
@@ -96,6 +95,7 @@
 @property CCSpriteFrame *rightFace;
 // -----------------------------------------------------------------
 // methods
+- (instancetype)initWithStartface:(int)startface;
 - (void)launchEnemy;
 - (void)enemyCollistionH;
 - (void)update:(float)dt;
@@ -107,6 +107,7 @@
 @property float roundDis;
 // -----------------------------------------------------------------
 // methods
+- (instancetype)initWithRoundDis:(float)dis;
 - (void)launchEnemy;
 - (void)update:(float)dt;
 @end
@@ -118,6 +119,7 @@
 
 // -----------------------------------------------------------------
 // methods
+- (instancetype)initWithFlyDis:(float)dis;
 - (void)launchEnemy;
 - (void)update:(float)dt;
 @end
@@ -138,11 +140,10 @@
 @property double PI;
 // -----------------------------------------------------------------
 // methods
+- (instancetype)initWithBegAngle:(float)begAngle AndTime:(float)time;
 - (void)launchEnemy;
 - (void)stopEnemyUpdate;
 - (enum EnemyVSHero)checkCollisionWithHero;
-- (void)forKilledByBullet;
-- (void)forKilledByHero;
 - (void)update:(float)dt;
 @end
 
@@ -155,9 +156,9 @@
 @property bool isFlying;
 // -----------------------------------------------------------------
 // methods
+- (instancetype)initWithoffsetH:(float)offsetH andOffsetV:(float)offsetV andDuration:(float)duration;
 - (void)launchEnemy;
 - (void)update:(float)dt;
-- (void)stopEnemyUpdate;
 - (void)checkState;
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (void)forKilledByHero;
@@ -198,6 +199,7 @@
 @property bool isAddable;
 // -----------------------------------------------------------------
 // methods
+- (instancetype)initWithNum:(int)addnum;
 - (void)launchEnemy;
 - (void)update:(float)dt;
 - (enum EnemyVSHero)checkCollisionWithHero;
@@ -212,6 +214,7 @@
 @property CGPoint firePos;
 // -----------------------------------------------------------------
 // methods
+- (instancetype)initWithDelay:(float)delay;
 - (void)launchEnemy;
 - (void)update:(float)dt;
 - (enum EnemyVSHero)checkCollisionWithHero;
@@ -245,6 +248,7 @@
 @property CCSpriteFrame *normal;
 // -----------------------------------------------------------------
 // methods
+- (instancetype)initWithDelay:(float)delay andType:(int)type;
 - (void)launchEnemy;
 - (void)update:(float)dt;
 - (void)forKilledByHero;
@@ -261,8 +265,6 @@
 - (void)update:(float)dt;
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (void)checkState;
-- (void)forKilledByHero;
-- (void)forKilledByBullet;
 @end
 
 
