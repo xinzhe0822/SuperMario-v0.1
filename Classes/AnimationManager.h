@@ -13,7 +13,7 @@
 @interface AnimationManager : NSObject
 
 + (AnimationManager*)getInstance;
-- (void)initAnimationMap;
+- (instancetype)initAnimationMap;
 - (void)preLoadEffectAndMusic;
 - (CCAnimation*)getAnimation:(enum AnimationType)key;
 - (CCActionAnimate*)createAnimateWithString:(NSString*)key;

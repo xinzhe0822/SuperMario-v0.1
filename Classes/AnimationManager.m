@@ -16,10 +16,11 @@ static AnimationManager *aniMngInstance = nil;
 +(AnimationManager*)getInstance{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,^{
-        aniMngInstance = [[self alloc]init];
+        aniMngInstance = [[self alloc] initAnimationMap];
     });
     return aniMngInstance;
 }
+
 - (CCAnimation*)createAnimationByAnimationType:(enum AnimationType)key{
     NSMutableArray* pArray = [NSMutableArray array];
 
@@ -34,7 +35,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"walkRight.png"];
             for (int i = 0; i < 10; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(18, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -45,7 +46,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"walkLeft.png"];
             for (int i = 9; i >= 0; --i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(18, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -56,7 +57,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"smallWalkLeft.png"];
             for (int i = 9; i >= 0; --i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(14 * i, 0, 14, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(14 * i, 0, 14, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(14, 16)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -67,7 +68,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"smallWalkRight.png"];
             for (int i = 0; i < 10; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(14 * i, 0, 14, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(14 * i, 0, 14, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(14, 16)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -78,7 +79,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"WalkLeft_fire.png"];
             for (int i = 9; i >= 0; --i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(18, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -89,7 +90,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"WalkRight_fire.png"];
             for (int i = 0; i < 10; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(18, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -100,7 +101,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"coinani.png"];
             for (int i = 0; i < 4; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(8 * i, 0, 8, 14) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(8 * i, 0, 8, 14) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(8, 14)];
                 [pArray addObject:frame];
                 [pArray addObject:frame];
             }
@@ -112,7 +113,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"Mushroom0.png"];
             for (int i = 0; i < 2; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * i, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * i, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 16)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.3f];
@@ -123,7 +124,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"flower0.png"];
             for (int i = 0; i < 2; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * i, 0, 16, 24) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * i, 0, 16, 24) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 24)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.3f];
@@ -134,7 +135,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"tortoise0.png"];
             for (int i = 2; i < 4; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 24) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 24) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(18, 24)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.3f];
@@ -145,7 +146,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"tortoise0.png"];
             for (int i = 4; i < 6; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 24) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 24) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(18, 24)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.3f];
@@ -156,7 +157,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"tortoise0.png"];
             for (int i = 0; i < 2; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 24) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 24) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(18, 24)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.3f];
@@ -167,7 +168,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"fireRight.png"];
             for (int i = 0; i < 8; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(10 * i, 3, 10, 10) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(10 * i, 3, 10, 10) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(10, 10)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.01f];
@@ -177,13 +178,13 @@ static AnimationManager *aniMngInstance = nil;
         {
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"fireRight.png"];
             
-            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(80, 3, 10, 10) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(80, 3, 10, 10) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(10, 10)];
             [pArray addObject:frame];
 
-            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(90, 0, 14, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(90, 0, 14, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(14, 16)];
             [pArray addObject:frame];
 
-            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(105, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(105, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 16)];
             [pArray addObject:frame];
             
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.05f];
@@ -194,7 +195,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"fireActionR.png"];
             for (int i = 0; i < 6; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(25 * i, 0, 25, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(25 * i, 0, 25, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(25, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -205,7 +206,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"arrowActionR.png"];
             for (int i = 0; i < 6; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(25 * i, 0, 25, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(25 * i, 0, 25, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(25, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -216,7 +217,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"fireActionL.png"];
             for (int i = 5; i >= 0; --i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(25 * i, 0, 25, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(25 * i, 0, 25, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(25, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -227,7 +228,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"arrowActionL.png"];
             for (int i = 5; i >= 0; --i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(25 * i, 0, 25, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(25 * i, 0, 25, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(25, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -237,10 +238,10 @@ static AnimationManager *aniMngInstance = nil;
         {
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"flyFishRight.png"];
 
-            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * 4, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * 4, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 16)];
             [pArray addObject:frame];
 
-            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * 5, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * 5, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 16)];
             [pArray addObject:frame];
             
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.05f];
@@ -250,10 +251,10 @@ static AnimationManager *aniMngInstance = nil;
         {
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"flyFishLeft.png"];
 
-            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * 4, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * 4, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 16)];
             [pArray addObject:frame];
 
-            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * 5, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * 5, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 16)];
             [pArray addObject:frame];
             
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.05f];
@@ -264,7 +265,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"arrowBroken.png"];
             for (int i = 0; i < 3; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * i, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * i, 0, 16, 16) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 16)];
                 [pArray addObject:frame];
             }
             
@@ -276,7 +277,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"small_die.png"];
             for (int i = 0; i < 7; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * i, 0, 16, 18) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16 * i, 0, 16, 18) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 18)];
                 [pArray addObject:frame];
                 [pArray addObject:frame];
             }
@@ -289,7 +290,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"normal_die.png"];
             for (int i = 0; i < 7; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 34) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 34) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(24, 34)];
                 [pArray addObject:frame];
                 [pArray addObject:frame];
             }
@@ -302,7 +303,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"fire_die.png"];
             for (int i = 0; i < 7; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 34) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 34) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(24, 34)];
                 [pArray addObject:frame];
                 [pArray addObject:frame];
             }
@@ -315,7 +316,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"boss.png"];
             for (int i = 3; i >=0; --i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(32 * i, 0, 32, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(32 * i, 0, 32, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(32, 32)];
                 [pArray addObject:frame];
             }
             
@@ -327,7 +328,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"boss.png"];
             for (int i = 4; i < 8; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(32 * i, 0, 32, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(32 * i, 0, 32, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(32, 32)];
                 [pArray addObject:frame];
             }
             
@@ -339,7 +340,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"bossBullet.png"];
             for (int i = 0; i < 2; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 8) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 8) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(24, 8)];
                 [pArray addObject:frame];
             }
             
@@ -351,7 +352,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"bossBullet.png"];
             for (int i = 3; i >= 2; --i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 8) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 8) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(24, 8)];
                 [pArray addObject:frame];
             }
             
@@ -360,13 +361,13 @@ static AnimationManager *aniMngInstance = nil;
         }
         case eAniBatteryBoom:
         {
-            frame = [CCSpriteFrame frameWithTextureFilename:@"batteryBoom1.png" rectInPixels:CGRectMake(0, 0, 32, 27) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTextureFilename:@"batteryBoom1.png" rectInPixels:CGRectMake(0, 0, 32, 27) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(32, 27)];
             [pArray addObject:frame];
             
-            frame = [CCSpriteFrame frameWithTextureFilename:@"batteryBoom2.png" rectInPixels:CGRectMake(0, 0, 32, 18) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTextureFilename:@"batteryBoom2.png" rectInPixels:CGRectMake(0, 0, 32, 18) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(32, 18)];
             [pArray addObject:frame];
             
-            frame = [CCSpriteFrame frameWithTextureFilename:@"batteryBoom3.png" rectInPixels:CGRectMake(0, 0, 32, 20) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTextureFilename:@"batteryBoom3.png" rectInPixels:CGRectMake(0, 0, 32, 20) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(32, 20)];
             [pArray addObject:frame];
             
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.1f];
@@ -376,10 +377,10 @@ static AnimationManager *aniMngInstance = nil;
         {
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"lighting.png"];
             
-            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(0, 0, 16, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(0, 0, 16, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 32)];
             [pArray addObject:frame];
             
-            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16, 0, 16, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+            frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(16, 0, 16, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(16, 32)];
             [pArray addObject:frame];
             
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.1f];
@@ -390,7 +391,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"allow_walkLeft.png"];
             for (int i = 9; i >= 0; --i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(18, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -401,7 +402,7 @@ static AnimationManager *aniMngInstance = nil;
             pTexture = [[CCTextureCache sharedTextureCache] addImage:@"allow_walkRight.png"];
             for (int i = 0; i < 10; ++i)
             {
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(18 * i, 0, 18, 32) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(18, 32)];
                 [pArray addObject:frame];
             }
             pAnimation = [CCAnimation animationWithSpriteFrames:(NSArray*)[pArray copy] delay:0.02f];
@@ -413,7 +414,7 @@ static AnimationManager *aniMngInstance = nil;
             for (int i = 0; i < 7; ++i)
             {
 
-                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 34) rotated:NO offset:ccp(0, 0) originalSize:pTexture.contentSize];
+                frame = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(24 * i, 0, 24, 34) rotated:NO offset:ccp(0, 0) originalSize:CGSizeMake(24, 34)];
                 [pArray addObject:frame];
                 [pArray addObject:frame];
             }
@@ -428,78 +429,80 @@ static AnimationManager *aniMngInstance = nil;
     
     return pAnimation;
 }
-- (void)initAnimationMap{
-    [self preLoadEffectAndMusic];
-    
-    [self setSelectLevel];
-    
-    [self setMusicSwitch];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniRight] name:[NSString stringWithFormat:@"%d", eAniRight]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniLeft] name:[NSString stringWithFormat:@"%d", eAniLeft]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniLeftSmall] name:[NSString stringWithFormat:@"%d", eAniLeftSmall]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniRightSmall] name:[NSString stringWithFormat:@"%d", eAniRightSmall]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBlinkCoin] name:[NSString stringWithFormat:@"%d", eAniBlinkCoin]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniMushroom] name:[NSString stringWithFormat:@"%d", eAniMushroom]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniflower] name:[NSString stringWithFormat:@"%d", eAniflower]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniTortoiseLeft] name:[NSString stringWithFormat:@"%d", eAniTortoiseLeft]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniTortoiseRight] name:[NSString stringWithFormat:@"%d", eAniTortoiseRight]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniTortoiseFly] name:[NSString stringWithFormat:@"%d", eAniTortoiseFly]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniRightFire] name:[NSString stringWithFormat:@"%d", eAniRightFire]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniLeftFire] name:[NSString stringWithFormat:@"%d", eAniLeftFire]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniRotatedFireBall] name:[NSString stringWithFormat:@"%d", eAniRotatedFireBall]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBoomedFireBall] name:[NSString stringWithFormat:@"%d", eAniBoomedFireBall]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFireActionR] name:[NSString stringWithFormat:@"%d", eAniFireActionR]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFireActionL] name:[NSString stringWithFormat:@"%d", eAniFireActionL]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFlyFishR] name:[NSString stringWithFormat:@"%d", eAniFlyFishR]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFlyFishL] name:[NSString stringWithFormat:@"%d", eAniFlyFishL]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowBroken] name:[NSString stringWithFormat:@"%d", eAniArrowBroken]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniSmallDie] name:[NSString stringWithFormat:@"%d", eAniSmallDie]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniNormalDie] name:[NSString stringWithFormat:@"%d", eAniNormalDie]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFireDie] name:[NSString stringWithFormat:@"%d", eAniFireDie]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBossMoveLeft] name:[NSString stringWithFormat:@"%d", eAniBossMoveLeft]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBossMoveRight] name:[NSString stringWithFormat:@"%d", eAniBossMoveRight]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBossFireLeft] name:[NSString stringWithFormat:@"%d", eAniBossFireLeft]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBossFireRight] name:[NSString stringWithFormat:@"%d", eAniBossFireRight]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBatteryBoom] name:[NSString stringWithFormat:@"%d", eAniBatteryBoom]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniLighting] name:[NSString stringWithFormat:@"%d", eAniLighting]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowLeft] name:[NSString stringWithFormat:@"%d", eAniArrowLeft]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowRight] name:[NSString stringWithFormat:@"%d", eAniArrowRight]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowDie] name:[NSString stringWithFormat:@"%d", eAniArrowDie]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowActionL] name:[NSString stringWithFormat:@"%d", eAniArrowActionL]];
-    
-    [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowActionR] name:[NSString stringWithFormat:@"%d", eAniArrowActionR]];
+- (instancetype)initAnimationMap{
+    self = [super init];
+    if(self){
+        [self preLoadEffectAndMusic];
+        [self setSelectLevel];
+        [self setMusicSwitch];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniRight] name:[NSString stringWithFormat:@"%d", eAniRight]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniLeft] name:[NSString stringWithFormat:@"%d", eAniLeft]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniLeftSmall] name:[NSString stringWithFormat:@"%d", eAniLeftSmall]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniRightSmall] name:[NSString stringWithFormat:@"%d", eAniRightSmall]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBlinkCoin] name:[NSString stringWithFormat:@"%d", eAniBlinkCoin]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniMushroom] name:[NSString stringWithFormat:@"%d", eAniMushroom]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniflower] name:[NSString stringWithFormat:@"%d", eAniflower]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniTortoiseLeft] name:[NSString stringWithFormat:@"%d", eAniTortoiseLeft]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniTortoiseRight] name:[NSString stringWithFormat:@"%d", eAniTortoiseRight]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniTortoiseFly] name:[NSString stringWithFormat:@"%d", eAniTortoiseFly]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniRightFire] name:[NSString stringWithFormat:@"%d", eAniRightFire]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniLeftFire] name:[NSString stringWithFormat:@"%d", eAniLeftFire]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniRotatedFireBall] name:[NSString stringWithFormat:@"%d", eAniRotatedFireBall]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBoomedFireBall] name:[NSString stringWithFormat:@"%d", eAniBoomedFireBall]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFireActionR] name:[NSString stringWithFormat:@"%d", eAniFireActionR]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFireActionL] name:[NSString stringWithFormat:@"%d", eAniFireActionL]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFlyFishR] name:[NSString stringWithFormat:@"%d", eAniFlyFishR]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFlyFishL] name:[NSString stringWithFormat:@"%d", eAniFlyFishL]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowBroken] name:[NSString stringWithFormat:@"%d", eAniArrowBroken]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniSmallDie] name:[NSString stringWithFormat:@"%d", eAniSmallDie]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniNormalDie] name:[NSString stringWithFormat:@"%d", eAniNormalDie]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniFireDie] name:[NSString stringWithFormat:@"%d", eAniFireDie]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBossMoveLeft] name:[NSString stringWithFormat:@"%d", eAniBossMoveLeft]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBossMoveRight] name:[NSString stringWithFormat:@"%d", eAniBossMoveRight]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBossFireLeft] name:[NSString stringWithFormat:@"%d", eAniBossFireLeft]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBossFireRight] name:[NSString stringWithFormat:@"%d", eAniBossFireRight]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniBatteryBoom] name:[NSString stringWithFormat:@"%d", eAniBatteryBoom]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniLighting] name:[NSString stringWithFormat:@"%d", eAniLighting]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowLeft] name:[NSString stringWithFormat:@"%d", eAniArrowLeft]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowRight] name:[NSString stringWithFormat:@"%d", eAniArrowRight]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowDie] name:[NSString stringWithFormat:@"%d", eAniArrowDie]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowActionL] name:[NSString stringWithFormat:@"%d", eAniArrowActionL]];
+        
+        [[CCAnimationCache sharedAnimationCache] addAnimation:[self createAnimationByAnimationType:eAniArrowActionR] name:[NSString stringWithFormat:@"%d", eAniArrowActionR]];
+    }
+    return self;
 }
 - (void)preLoadEffectAndMusic{
     [[OALSimpleAudio sharedInstance] preloadBg:@"OnLand.ogg"];
@@ -523,7 +526,6 @@ static AnimationManager *aniMngInstance = nil;
     [[OALSimpleAudio sharedInstance] preloadEffect:@"RengHuoQiu.ogg"];
 }
 - (CCAnimation*)getAnimation:(enum AnimationType)key{
-
     NSString *str = [NSString stringWithFormat:@"%d", key];
     return [[CCAnimationCache sharedAnimationCache] animationByName:str];
 }

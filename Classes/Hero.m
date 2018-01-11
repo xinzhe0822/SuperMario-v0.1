@@ -76,10 +76,10 @@ static Hero* heroInstance= nil;
         self.normalRightArrow = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(0, 0, 18, 32) rotated:NO offset:CGPointMake(0, 0) originalSize:CGSizeMake(18, 32)];
         self.jumpRightArrow = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(180, 0, 18, 32) rotated:NO offset:CGPointMake(0, 0) originalSize:CGSizeMake(18, 32)];
         
-        self.isDied = false;
-        self.isSafeTime = false;
-        self.bulletable = false;
-        self.gadgetable = false;
+        self.isDied = NO;
+        self.isSafeTime = NO;
+        self.bulletable = NO;
+        self.gadgetable = NO;
         self.currentBulletType = eBullet_common;
         [self heroInit];
     }
@@ -371,7 +371,6 @@ static Hero* heroInstance= nil;
 /*陷阱死亡*/
 -(void)dieForTrap{
     [self.mainBody stopAllActions];
-    
     switch (self.bodyType)
     {
         case eBody_Small:

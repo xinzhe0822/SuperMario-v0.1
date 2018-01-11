@@ -373,7 +373,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
         [self.pPassFailure setVisible:YES];
     }
     [self.mainMap stopUpdateForHeroDie];
-    [self unschedule:@selector(update:)];
+    //[self unschedule:@selector(update:)];
     [self.pMenuFireBall setEnabled:NO];
     [self.pMenuArrow setEnabled:NO];
     CCActionDelay *pDelay = [[CCActionDelay alloc]initWithDuration:3];
@@ -395,7 +395,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
     NSString *str = [NSString stringWithFormat:@"Level%d", level + 1];
     [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:str];
     [self.mainMap stopUpdateForHeroDie];
-    [self unschedule:@selector(update:)];
+    //[self unschedule:@selector(update:)];
     CCActionDelay *pDelay = [[CCActionDelay alloc]initWithDuration:3];
     [self runAction:[CCActionSequence actions:pDelay,[CCActionCallFunc actionWithTarget:self selector:@selector(reShowPassSuccess)], nil]];
 }
@@ -467,7 +467,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
     
     if ([self.hero gadgetable])
     {
-        self.currentPos = ccp(self.moveOffset + [[self.mainMap heroInGadget] moveOffset],self.jumpOffset + [[self.mainMap heroInGadget] jumpOffset]);
+        self.currentPos = ccp(self.currentPos.x+self.moveOffset + [[self.mainMap heroInGadget] moveOffset],self.currentPos.y+self.jumpOffset + [[self.mainMap heroInGadget] jumpOffset]);
     }
     else
     {
@@ -545,7 +545,6 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
 
 -(void) collistionV{
     CGPoint currentPos = [self.hero position];
-    //NSLog(@"currentPos  x:%f y:%f",currentPos.x,currentPos.y);
     if (currentPos.y <= 0)
     {
         [self.hero setHeroDie:YES];

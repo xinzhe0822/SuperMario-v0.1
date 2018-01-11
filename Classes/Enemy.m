@@ -671,7 +671,7 @@
     
 }
 
-- (void)reRigh{
+- (void)reRight{
     [self.enemyBody stopAllActions];
     [self.enemyBody runAction:[CCActionRepeatForever actionWithAction:[sAnimationMgr createAnimateWithType:eAniTortoiseRight]]];
 }

@@ -25,13 +25,15 @@
         [pBg setScaleX:visibleSize.width/pBg.textureRect.size.width];
         [self addChild:pBg];
         
-        CCSprite *pZhy = [CCSprite spriteWithImageNamed:@"zhy.jpg"];
-        pZhy.position = ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2 + 50);
-        [self addChild:pZhy];
+        CCLabelTTF *zxz = [CCLabelTTF labelWithString:@"制作人: 周新哲" fontName:@"ArialMT" fontSize:30];
+        zxz.position = ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2 + 50);
+        zxz.color = [CCColor blackColor];
+        [self addChild:zxz];
         
-        CCSprite *pWxb = [CCSprite spriteWithImageNamed:@"wxb.jpg"];
-        pWxb.position= ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2 - 50);
-        [self addChild:pWxb];
+        CCLabelTTF *cp = [CCLabelTTF labelWithString:@"制作人: 陈    鹏" fontName:@"ArialMT" fontSize:30];
+        cp.position = ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2-50);
+        cp.color = [CCColor blackColor];
+        [self addChild:cp];
         
         CCSpriteFrame *pBackNormal = [CCSpriteFrame frameWithImageNamed:@"backA.png"];
         CCSpriteFrame *pBackSelect = [CCSpriteFrame frameWithImageNamed:@"backB.png"];

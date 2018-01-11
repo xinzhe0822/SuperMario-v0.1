@@ -23,6 +23,7 @@
         CGPoint heroPos = [[Hero getHeroInstance] position];
         CGSize heroSize = [[Hero getHeroInstance] contentSize];
         self.startPos = ccp(heroPos.x, heroPos.y + heroSize.height/2);
+        NSLog(@"-----x:%f, y:%f",self.startPos.x,self.startPos.y);
     }
     return self;
 }
@@ -76,7 +77,7 @@
 
 -(void)launchBullet{
     [self.bulletBody runAction: [CCActionRepeatForever actionWithAction:[[AnimationManager getInstance] createAnimateWithType:eAniRotatedFireBall]]];
-    [self schedule:@selector(update:) interval:1/[[CCDirector sharedDirector] secondsPerFrame]];
+    //[self schedule:@selector(update:) interval:1/[[CCDirector sharedDirector] secondsPerFrame]];
 }
 
 -(void)commonBulletCollisionH{
@@ -102,7 +103,7 @@
     if (leftSide - mapMaxH >= winSize.width)
     {
         [self.bulletBody stopAllActions];
-        [self unschedule:@selector(update:)];
+        //[self unschedule:@selector(update:)];
         [self autoClear];
     }
 
@@ -165,7 +166,6 @@
         case eTile_Trap:
         {
             [self.bulletBody stopAllActions];
-            [self unschedule:@selector(update:)];
             [self autoClear];
             return ;
             break;
@@ -192,9 +192,7 @@
 -(void)showBoom{
     [self.bulletBody stopAllActions];
     [self stopAllActions];
-    [self unschedule:@selector(update:)];
-    
-    //[self.bulletBody runAction:[CCActionSequence actions:[sAnimationMgr createAnimateWithString:eAniRotatedFireBall],[CCActionCallFunc actionWithTarget:self selector:@selector(autoClear)], nil]];
+    [self.bulletBody runAction:[CCActionSequence actions:[sAnimationMgr createAnimateWithType:eAniRotatedFireBall],[CCActionCallFunc actionWithTarget:self selector:@selector(autoClear)], nil]];
 }
 -(void)autoClear{
     self.bulletState = eBulletState_nonactive;
@@ -269,7 +267,7 @@
     {
         [self.bulletBody stopAllActions];
         [self stopAllActions];
-        [self unschedule:@selector(update:)];
+        //[self unschedule:@selector(update:)];
         [self autoClear];
     }
 
@@ -310,7 +308,7 @@
     self.bulletState = eBulletState_nonactive;
     [self.bulletBody stopAllActions];
     [self stopAllActions];
-    [self unschedule:@selector(update:)];
+    //[self unschedule:@selector(update:)];
     [self setVisible:NO];
 }
 
@@ -337,7 +335,7 @@
 -(void)broken{
     [self.bulletBody stopAllActions];
     [self stopAllActions];
-    [self unschedule:@selector(update:)];
+    //[self unschedule:@selector(update:)];
     [self.bulletBody runAction:[CCActionSequence actions:[[AnimationManager getInstance] createAnimateWithType:eAniArrowBroken],[CCActionCallFunc actionWithTarget:self selector:@selector(autoClear)], nil]];
 }
 

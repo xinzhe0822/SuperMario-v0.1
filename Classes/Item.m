@@ -86,7 +86,7 @@
             self.gadgetState = eGadgetState_over;
             [self.gadgetBody stopAllActions];
             [self stopAllActions];
-            [self unschedule:@selector(update:)];
+            //[self unschedule:@selector(update:)];
             [self setVisible:NO];
         }
         else
@@ -147,7 +147,7 @@
         default:
             break;
     }
-    [self schedule:@selector(update:) interval:1/[[CCDirector sharedDirector] secondsPerFrame]];
+    //[self schedule:@selector(update:) interval:1/[[CCDirector sharedDirector] secondsPerFrame]];
 }
 
 -(void)update:(CCTime)delta{
@@ -212,7 +212,7 @@
         default:
             break;
     }
-    [self schedule:@selector(update:) interval:1/[[CCDirector sharedDirector] secondsPerFrame]];
+    //[self schedule:@selector(update:) interval:1/[[CCDirector sharedDirector] secondsPerFrame]];
 }
 
 -(void)update:(CCTime)delta{

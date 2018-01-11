@@ -29,6 +29,10 @@ static GameMap *gameMap = nil;
 }
 + (GameMap*)create:(NSString*)tmxFile{
     GameMap *pGameMap = [self getGameMap];
+    [pGameMap removeAllChildren];
+    [[pGameMap pEnemyArray] removeAllObjects];
+    [[pGameMap pBulletArray] removeAllObjects];
+    [[pGameMap pGadgetArray] removeAllObjects];
     if (pGameMap && [pGameMap initWithFile:tmxFile])
     {
         [pGameMap extraInit];
@@ -130,7 +134,6 @@ static GameMap *gameMap = nil;
     [[self pFlag] setAnchorPoint:ccp(0.5f, 0)];
     [[self pFlag] setPosition:[self flagPoint]];
     [self addChild:[self pFlag] z:[[self children] count]];
-    
     
     [self launchEnemyInMap];
     
@@ -696,9 +699,7 @@ static GameMap *gameMap = nil;
     [self addChild:self.pItem];
     
     CCActionInterval *pJump = [CCActionJumpBy actionWithDuration:0.16f position:ccp(0, [self tileSize].height) height:[self tileSize].height * 1.5 jumps:1];
-    
     [[[self pItem] itemBody] runAction:[sAnimationMgr createAnimateWithType:eAniBlinkCoin]];
-
     [[self pItem] runAction:[CCActionSequence actions:pJump, [CCActionCallFunc actionWithTarget:self selector:@selector(clearItem)], nil]];
 }
 
