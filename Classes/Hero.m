@@ -81,6 +81,7 @@ static Hero* heroInstance= nil;
         self.bulletable = false;
         self.gadgetable = false;
         self.currentBulletType = eBullet_common;
+        [self heroInit];
     }
     return self;
 }

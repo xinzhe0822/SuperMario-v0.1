@@ -821,12 +821,12 @@ static GameMap *gameMap = nil;
 
 - (CGPoint)positionToTileCoord:(CGPoint)pos{
     int x = pos.x / [self tileSize].width;
-    int y = ([self tileSize].height - 1) - pos.y / [self tileSize].height;
+    int y = ([self mapSize].height - 1) - pos.y / [self tileSize].height;
     return ccp(x, y);
 }
 - (CGPoint)tilecoordToPosition:(CGPoint)tileCoord{
     float x = tileCoord.x * [self tileSize].width;
-    float y = ([self tileSize].height - 1 - tileCoord.y) * [self tileSize].height;
+    float y = ([self mapSize].height - 1 - tileCoord.y) * [self tileSize].height;
     return ccp(x, y);
 }
 

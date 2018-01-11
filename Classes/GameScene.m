@@ -545,6 +545,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
 
 -(void) collistionV{
     CGPoint currentPos = [self.hero position];
+    //NSLog(@"currentPos  x:%f y:%f",currentPos.x,currentPos.y);
     if (currentPos.y <= 0)
     {
         [self.hero setHeroDie:YES];
@@ -608,6 +609,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
     {
         CGPoint downCollision = ccp(heroLeftSide + heroIdx, currentPos.y);
         CGPoint downTileCoord = [self.mainMap positionToTileCoord:downCollision];
+        //NSLog(@"second  x:%f y:%f",downTileCoord.x,downTileCoord.y);
         if ([self.mainMap isMarioEatMushroom:downTileCoord])
         {
             [self.hero changeForGotMushroom];
@@ -619,7 +621,6 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
         downTileCoord.y += 1;
         CGPoint downPos = [self.mainMap tilecoordToPosition:downTileCoord];
         downPos = ccp(currentPos.x , downPos.y + self.mainMap.tileSize.height);
-        
         enum TileType tileType = [self.mainMap tileTypeforPos:downTileCoord];
         bool flagDown = NO;
         switch (tileType)
