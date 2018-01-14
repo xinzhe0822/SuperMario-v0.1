@@ -23,7 +23,6 @@
         CGPoint heroPos = [[Hero getHeroInstance] position];
         CGSize heroSize = [[Hero getHeroInstance] contentSize];
         self.startPos = ccp(heroPos.x, heroPos.y + heroSize.height/2);
-        NSLog(@"-----x:%f, y:%f",self.startPos.x,self.startPos.y);
     }
     return self;
 }
@@ -177,7 +176,7 @@
     self.jumpOffset -= self.ccJumpOffset;
 }
 
--(void)update:(float)dt{
+-(void)update:(CCTime)delta{
     if (self.bulletState == eBulletState_active)
     {
         CGPoint currentPos = [self position];

@@ -41,7 +41,6 @@
 -(void) forKilledEnemy;
 -(void) commonBulletCollisionH;
 -(void) commonBulletCollisionV;
--(void) update:(float)dt;
 -(void) showBoom;
 -(void) autoClear;
 
@@ -56,7 +55,6 @@
 
 -(void) launchBullet;
 -(void) forKilledEnemy;
-//-(void) update:(float)dt;
 -(void) arrowBulletCollisionH;
 -(CGRect) getBulletRect;
 -(void) autoClear;

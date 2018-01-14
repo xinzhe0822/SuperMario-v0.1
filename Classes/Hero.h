@@ -73,6 +73,7 @@
 -(void)setHeroTypeForSmall; //设置英雄为小尺寸
 -(void)setHeroTypeForNormal;    //设置英雄为正常尺寸
 -(void)reSetSafeTime;   //取消无敌状态
+-(void)resetHeroState;
 
 +(Hero*) getHeroInstance;
 

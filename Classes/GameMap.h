@@ -89,7 +89,6 @@
 - (BOOL)isMarioEatAddLifeMushroom:(CGPoint)tileCoord;
 - (void)launchEnemyInMap;
 - (void)launchGadgetInMap;
-- (void)update:(float)dt;
 - (void)stopUpdateForHeroDie;
 - (void)pauseGameMap;
 - (void)resumeGameMap;

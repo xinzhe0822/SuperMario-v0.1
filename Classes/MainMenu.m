@@ -12,7 +12,7 @@
 #import "Global.h"
 #import "SelectMenu.h"
 #import "AboutMenu.h"
-//#import "SetMusic.h"
+#import "SetMusic.h"
 
 @implementation MainMenu
 
@@ -78,8 +78,7 @@
 
 -(void)menuSetting
 {
-    CCScene *pScene = [[CCScene alloc]init];
-    //pScene->addChild(CCSetMusic::create());
+    CCScene *pScene = [[SetMusic alloc]init];
     [[CCDirector sharedDirector] replaceScene:pScene];
 }
 

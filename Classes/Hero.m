@@ -17,7 +17,6 @@ static Hero* heroInstance= nil;
 - (instancetype)init
 {
     self = [super init];
-
     if (self) {
         self.mainBody = nil;
         self.mainTemp = nil;
@@ -75,7 +74,7 @@ static Hero* heroInstance= nil;
         pTexture = [CCTexture textureWithFile:@"allow_walkRight.png"];
         self.normalRightArrow = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(0, 0, 18, 32) rotated:NO offset:CGPointMake(0, 0) originalSize:CGSizeMake(18, 32)];
         self.jumpRightArrow = [CCSpriteFrame frameWithTexture:pTexture rectInPixels:CGRectMake(180, 0, 18, 32) rotated:NO offset:CGPointMake(0, 0) originalSize:CGSizeMake(18, 32)];
-        
+        heroInstance = self;
         self.isDied = NO;
         self.isSafeTime = NO;
         self.bulletable = NO;
@@ -87,10 +86,6 @@ static Hero* heroInstance= nil;
 }
 
 +(Hero*)getHeroInstance{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken,^{
-         heroInstance= [[self alloc]init];
-    });
     return heroInstance;
 }
 

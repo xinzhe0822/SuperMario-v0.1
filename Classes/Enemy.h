@@ -31,7 +31,6 @@
 
 @property enum marioDirection startFace;
 
-
 @property float moveOffset;
 @property float ccMoveOffset;
 
@@ -72,7 +71,7 @@
 //void enemyCollistionH();
 //void enemyCollistionV();
 
-- (void)update:(float)dt;
+
 @end
 
 @interface EnemyFlower : Enemy
@@ -83,7 +82,7 @@
 // methods
 - (void)launchEnemy;
 
-- (void)update:(float)dt;
+
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (CGRect)getEnemyRect;
 @end
@@ -98,7 +97,7 @@
 - (instancetype)initWithStartface:(int)startface;
 - (void)launchEnemy;
 - (void)enemyCollistionH;
-- (void)update:(float)dt;
+
 @end
 
 @interface EnemyTortoiseRound : Enemy
@@ -109,7 +108,7 @@
 // methods
 - (instancetype)initWithRoundDis:(float)dis;
 - (void)launchEnemy;
-- (void)update:(float)dt;
+
 @end
 
 @interface EnemyTortoiseFly : Enemy
@@ -121,7 +120,7 @@
 // methods
 - (instancetype)initWithFlyDis:(float)dis;
 - (void)launchEnemy;
-- (void)update:(float)dt;
+
 @end
 
 @interface EnemyFireString : Enemy
@@ -144,7 +143,7 @@
 - (void)launchEnemy;
 - (void)stopEnemyUpdate;
 - (enum EnemyVSHero)checkCollisionWithHero;
-- (void)update:(float)dt;
+
 @end
 
 @interface EnemyFlyFish : Enemy
@@ -158,7 +157,6 @@
 // methods
 - (instancetype)initWithoffsetH:(float)offsetH andOffsetV:(float)offsetV andDuration:(float)duration;
 - (void)launchEnemy;
-- (void)update:(float)dt;
 - (void)checkState;
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (void)forKilledByHero;
@@ -172,7 +170,6 @@
 // -----------------------------------------------------------------
 // methods
 - (void)launchEnemy;
-- (void)update:(float)dt;
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (void)forKilledByHero;
 - (void)forKilledByBullet;
@@ -186,7 +183,6 @@
 // -----------------------------------------------------------------
 // methods
 - (void)launchEnemy;
-- (void)update:(float)dt;
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (void)forKilledByHero;
 - (void)forKilledByBullet;
@@ -201,7 +197,6 @@
 // methods
 - (instancetype)initWithNum:(int)addnum;
 - (void)launchEnemy;
-- (void)update:(float)dt;
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (void)forKilledByHero;
 @end
@@ -216,7 +211,7 @@
 // methods
 - (instancetype)initWithDelay:(float)delay;
 - (void)launchEnemy;
-- (void)update:(float)dt;
+
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (void)forKilledByHero;
 - (void)forKilledByBullet;
@@ -229,7 +224,7 @@
 // -----------------------------------------------------------------
 // methods
 - (void)launchEnemy;
-- (void)update:(float)dt;
+
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (void)forKilledByHero;
 - (void)forKilledByBullet;
@@ -250,7 +245,7 @@
 // methods
 - (instancetype)initWithDelay:(float)delay andType:(int)type;
 - (void)launchEnemy;
-- (void)update:(float)dt;
+
 - (void)forKilledByHero;
 - (void)forKilledByBullet;
 @end
@@ -262,7 +257,7 @@
 // -----------------------------------------------------------------
 // methods
 - (void)launchEnemy;
-- (void)update:(float)dt;
+
 - (enum EnemyVSHero)checkCollisionWithHero;
 - (void)checkState;
 @end

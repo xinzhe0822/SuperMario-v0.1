@@ -424,9 +424,6 @@ static AnimationManager *aniMngInstance = nil;
         default:
             break;
     }
-    
-//    pArray->release();
-    
     return pAnimation;
 }
 - (instancetype)initAnimationMap{
@@ -551,15 +548,14 @@ static AnimationManager *aniMngInstance = nil;
     for (int i = 2; i <= 8; ++i)
     {
         str= [str initWithString:[NSString stringWithFormat:@"Level%d", i]];
-//        CCUserDefault::sharedUserDefault()->setStringForKey(str->m_sString.c_str(), "no");
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:str forKey:@"no"];
+        [defaults setObject:@"no" forKey:str];
     }
 }
 - (void)setMusicSwitch{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"Music" forKey:@"on"];
-    [defaults setObject:@"SoundEffect" forKey:@"on"];
+    [defaults setObject:@"on" forKey:@"Music"];
+    [defaults setObject:@"on" forKey:@"SoundEffect"];
 }
 
 @end

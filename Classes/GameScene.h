@@ -96,6 +96,8 @@
 @property CGRect jumpKeyRect;
 @property CGRect fireKeyRect;
 
+@property BOOL isPause;
+
 -(instancetype) init;
 -(void) initHeroAndMap;
 -(void) initControlUI;

@@ -23,7 +23,7 @@
 @property CCSpriteFrame* pEffectOff;
 
 -(instancetype) init;
--(instancetype) initSwitch;
+-(void) initSwitch;
 
 -(void) menuBackMainMenu;
 -(void) menuMusic;

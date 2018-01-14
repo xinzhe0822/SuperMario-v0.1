@@ -29,7 +29,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
         self.hero = nil;
         mapMaxH = 0.0f;
         self.mapBeginPos = ccp(0.0f, 96.0f);
-        self.birthPoint = ccp(180.0f, 32.0f);
+        self.birthPoint = ccp(32.0f, 32.0f);
         
         self.isKeyDownA = NO;
         self.isKeyDownD = NO;
@@ -65,15 +65,17 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
         self.isRightKeyDown = NO;
         self.isJumpKeyDown = NO;
         self.isFireKeyDown = NO;
-        //[[OALSimpleAudio sharedInstance] playBg:@"OnLand.ogg" loop:YES];
+        [[OALSimpleAudio sharedInstance] playBg:@"OnLand.wma" loop:YES];
         self.pMenu = [[CCScene alloc] init];
         [self initHeroAndMap];
         [self initControlUI];
         [self initBulletUI];
         [self initRect];
         [self initSetMenu];
+        [AnimationManager getInstance];
         self.userInteractionEnabled = YES;
-        [self setMultipleTouchEnabled:YES];
+        [self.pMenu setMultipleTouchEnabled:YES];
+        self.isPause = NO;
     }
     return self;
 }
@@ -81,17 +83,18 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
 -(void) initHeroAndMap{
     NSString* temp = [NSString stringWithFormat:@"MarioMap%d.tmx",[[Global getGlobalInstance] currentLevel]];
     self.mainMap = [GameMap create:temp];
-    
     self.mapSize = CGSizeMake([self.mainMap mapSize].width * [self.mainMap tileSize].width, [self.mainMap mapSize].height * [self.mainMap tileSize].height);
     [self.mainMap setPosition:ccp(0, 0)];
     [self.mainScene addChild:self.mainMap];
     self.hero = [[Hero alloc]init];
+    //[self.hero resetHeroState];
     [self.hero setBodyType:[Global getGlobalInstance].currentHeroType];
     [self.hero setAnchorPoint:ccp(0.5f, 0.0f)];
     [self.hero setPosition:[self.mainMap marioBirthPos]];
     self.heroSize = [self.hero currentSize];
     [self.mainScene addChild:self.hero];
     [self.mainScene setPosition:self.mapBeginPos];
+    
     [self addChild:self.mainScene];
 }
 
@@ -280,6 +283,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
     [self resumeGameLayer];
 }
 -(void) pauseGameLayer{
+    self.isPause = YES;
     [self.mainMap pauseGameMap];
     //[self unschedule:@selector(update)];
 //    [self.pLeftKey setEnabled:NO];
@@ -300,6 +304,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
 }
 
 -(void) resumeGameLayer{
+    self.isPause = NO;
     [self.mainMap resumeGameMap];
     //    [self.pLeftKey setEnabled:YES];
     //    [self.pRightKey setEnabled:YES];
@@ -338,10 +343,12 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
 }
 
 -(void) menuReStart{
+    [self.mainScene removeChild:self.hero];
     CCScene *pScene = [[GameScene alloc] init];
     [[CCDirector sharedDirector] replaceScene:pScene];
 }
 -(void) menuSelectMenu{
+    [self.mainScene removeChild:self.hero];
     CCScene *pScene = [[SelectMenu alloc] init];
     [[CCDirector sharedDirector] replaceScene:pScene];
 }
@@ -373,7 +380,6 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
         [self.pPassFailure setVisible:YES];
     }
     [self.mainMap stopUpdateForHeroDie];
-    //[self unschedule:@selector(update:)];
     [self.pMenuFireBall setEnabled:NO];
     [self.pMenuArrow setEnabled:NO];
     CCActionDelay *pDelay = [[CCActionDelay alloc]initWithDuration:3];
@@ -395,13 +401,11 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
     NSString *str = [NSString stringWithFormat:@"Level%d", level + 1];
     [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:str];
     [self.mainMap stopUpdateForHeroDie];
-    //[self unschedule:@selector(update:)];
     CCActionDelay *pDelay = [[CCActionDelay alloc]initWithDuration:3];
     [self runAction:[CCActionSequence actions:pDelay,[CCActionCallFunc actionWithTarget:self selector:@selector(reShowPassSuccess)], nil]];
 }
 -(void) reShowPassSuccess{
     [self.pPassSuccess setVisible:YES];
-    
     if ([[Global getGlobalInstance] currentLevel] == [[Global getGlobalInstance] totalLevels])
     {
         [self showPassAll];
@@ -423,10 +427,14 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
     [self runAction:[CCActionSequence actions:pTo,pDelay,[CCActionCallFunc actionWithTarget:self selector:@selector(toMainMenu)], nil]];
 }
 -(void) menuRetry{
+    self.isPause = YES;
+    [self.mainScene removeChild:self.hero];
     CCScene *pScene = [[GameScene alloc] init];
     [[CCDirector sharedDirector] replaceScene:pScene];
 }
 -(void) menuNext{
+    self.isPause = YES;
+    [self.mainScene removeChild:self.hero];
     [[Global getGlobalInstance] currentLevelPlusOne];
     CCScene *pScene = [[GameScene alloc] init];
     [[CCDirector sharedDirector] replaceScene:pScene];
@@ -435,6 +443,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
     [self toMainMenu];
 }
 -(void)toMainMenu{
+    [self.mainScene removeChild:self.hero];
     CCScene *pScene = [[MainMenu alloc] init];
     [[CCDirector sharedDirector] replaceScene:pScene];
 }
@@ -450,47 +459,49 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
 }
 
 -(void) update:(CCTime)delta{
-    if ([self.hero isDied])
-    {
-        [self stopForPassFailure];
-        return ;
-    }
-    if (self.isPass)
-    {
-        [self stopForPassSuccess];
-        return ;
-    }
-    [self updateControl];
-    
-    self.currentPos = [self.hero position];
-    self.heroSize = [self.hero contentSize];
-    
-    if ([self.hero gadgetable])
-    {
-        self.currentPos = ccp(self.currentPos.x+self.moveOffset + [[self.mainMap heroInGadget] moveOffset],self.currentPos.y+self.jumpOffset + [[self.mainMap heroInGadget] jumpOffset]);
-    }
-    else
-    {
-        self.currentPos = ccp(self.currentPos.x+self.moveOffset,self.currentPos.y+self.jumpOffset);
-    }
-    if (self.isSky)
-    {
-        switch ([self.hero face])
+    if(!self.isPause){
+        if ([self.hero isDied])
         {
-            case eLeft:
-                [self.hero setHeroState:eJumpLeft];
-                break;
-            case eRight:
-                [self.hero setHeroState:eJumpRight];
-                break;
-            default:
-                break;
+            [self stopForPassFailure];
+            return ;
         }
+        if (self.isPass)
+        {
+            [self stopForPassSuccess];
+            return ;
+        }
+        [self updateControl];
+        
+        self.currentPos = [self.hero position];
+        self.heroSize = [self.hero contentSize];
+        
+        if ([self.hero gadgetable])
+        {
+            self.currentPos = ccp(self.currentPos.x+self.moveOffset + [[self.mainMap heroInGadget] moveOffset],self.currentPos.y+self.jumpOffset + [[self.mainMap heroInGadget] jumpOffset]);
+        }
+        else
+        {
+            self.currentPos = ccp(self.currentPos.x+self.moveOffset,self.currentPos.y+self.jumpOffset);
+        }
+        if (self.isSky)
+        {
+            switch ([self.hero face])
+            {
+                case eLeft:
+                    [self.hero setHeroState:eJumpLeft];
+                    break;
+                case eRight:
+                    [self.hero setHeroState:eJumpRight];
+                    break;
+                default:
+                    break;
+            }
+        }
+        [self.hero setPosition:self.currentPos];
+        [self setSceneScrollPosition];
+        [self collistionV];
+        [self collistionH];
     }
-    [self.hero setPosition:self.currentPos];
-    [self setSceneScrollPosition];
-    [self collistionV];
-    [self collistionH];
 }
 
 -(void) updateControl{
@@ -608,7 +619,6 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
     {
         CGPoint downCollision = ccp(heroLeftSide + heroIdx, currentPos.y);
         CGPoint downTileCoord = [self.mainMap positionToTileCoord:downCollision];
-        //NSLog(@"second  x:%f y:%f",downTileCoord.x,downTileCoord.y);
         if ([self.mainMap isMarioEatMushroom:downTileCoord])
         {
             [self.hero changeForGotMushroom];
@@ -832,7 +842,7 @@ static float mapMaxH;   //场景左侧滑过地图的水平距离
     if (fabs(viewPoint.x) > mapMaxH)
     {
         [self.mainScene setPosition:viewPoint];
-        mapMaxH = fabs(self.mainScene.position.x);
+        mapMaxH =fabs(self.mainScene.position.x);
     }
 }
 
